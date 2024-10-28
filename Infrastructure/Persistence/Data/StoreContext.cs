@@ -1,5 +1,4 @@
-﻿
-namespace Persistence.Data
+﻿namespace Persistence.Data
 {
     public class StoreContext : DbContext
 	{

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Data;
 
@@ -10,9 +11,11 @@ using Persistence.Data;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20241028171936_updateProductClass")]
+    partial class updateProductClass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,14 +50,14 @@ namespace Persistence.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,3)");
 
-                    b.Property<int>("TypeId")
+                    b.Property<int>("TypedId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("TypedId");
 
                     b.ToTable("Products");
                 });
@@ -103,7 +106,7 @@ namespace Persistence.Migrations
 
                     b.HasOne("Domain.Entities.ProductType", "ProductType")
                         .WithMany()
-                        .HasForeignKey("TypeId")
+                        .HasForeignKey("TypedId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
